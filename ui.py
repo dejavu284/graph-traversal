@@ -14,18 +14,21 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1088, 787)
+        MainWindow.resize(491, 781)
+        MainWindow.setMinimumSize(QtCore.QSize(491, 781))
+        MainWindow.setMaximumSize(QtCore.QSize(1000, 1000))
         MainWindow.setStyleSheet("background-color:#22222e")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(-51, -91, 1291, 481))
+        self.frame.setGeometry(QtCore.QRect(0, 0, 1000, 381))
+        self.frame.setToolTip("")
         self.frame.setStyleSheet("background-color: #fb5b5d")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.label = QtWidgets.QLabel(self.frame)
-        self.label.setGeometry(QtCore.QRect(60, 90, 291, 81))
+        self.label.setGeometry(QtCore.QRect(0, 0, 491, 41))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(20)
@@ -33,26 +36,47 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.label.setFont(font)
+        self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.label.setStyleSheet("color: white\n"
 "")
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
-        self.input_1 = QtWidgets.QLineEdit(self.centralwidget)
-        self.input_1.setGeometry(QtCore.QRect(65, 420, 380, 60))
+        self.OutputText = QtWidgets.QTextBrowser(self.frame)
+        self.OutputText.setGeometry(QtCore.QRect(0, 320, 491, 61))
+        self.OutputText.setToolTip("")
+        self.OutputText.setObjectName("OutputText")
+        self.tableWidget = QtWidgets.QTableWidget(self.frame)
+        self.tableWidget.setGeometry(QtCore.QRect(0, 50, 491, 270))
+        self.tableWidget.setAutoFillBackground(False)
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(0)
+        self.tableWidget.setRowCount(0)
+        self.widget = QtWidgets.QWidget(self.centralwidget)
+        self.widget.setGeometry(QtCore.QRect(10, 420, 471, 361))
+        self.widget.setToolTip("")
+        self.widget.setObjectName("widget")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.input_1 = QtWidgets.QLineEdit(self.widget)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(20)
         font.setBold(True)
         font.setWeight(75)
         self.input_1.setFont(font)
+        self.input_1.setToolTip("")
         self.input_1.setStyleSheet("background-color: #22222e;\n"
 "border: 2px solid #f66867;\n"
-"border-radius: 30;\n"
+"border-radius: 20;\n"
 "color: white")
         self.input_1.setText("")
         self.input_1.setAlignment(QtCore.Qt.AlignCenter)
         self.input_1.setObjectName("input_1")
-        self.input_2 = QtWidgets.QLineEdit(self.centralwidget)
-        self.input_2.setGeometry(QtCore.QRect(65, 500, 380, 60))
+        self.verticalLayout.addWidget(self.input_1)
+        self.input_2 = QtWidgets.QLineEdit(self.widget)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(20)
@@ -61,13 +85,13 @@ class Ui_MainWindow(object):
         self.input_2.setFont(font)
         self.input_2.setStyleSheet("background-color: #22222e;\n"
 "border: 2px solid #f66867;\n"
-"border-radius: 30;\n"
+"border-radius: 20;\n"
 "color: white")
         self.input_2.setText("")
         self.input_2.setAlignment(QtCore.Qt.AlignCenter)
         self.input_2.setObjectName("input_2")
-        self.input_3 = QtWidgets.QLineEdit(self.centralwidget)
-        self.input_3.setGeometry(QtCore.QRect(65, 580, 380, 60))
+        self.verticalLayout.addWidget(self.input_2)
+        self.input_3 = QtWidgets.QLineEdit(self.widget)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(20)
@@ -76,13 +100,13 @@ class Ui_MainWindow(object):
         self.input_3.setFont(font)
         self.input_3.setStyleSheet("background-color: #22222e;\n"
 "border: 2px solid #f66867;\n"
-"border-radius: 30;\n"
+"border-radius: 20;\n"
 "color: white")
         self.input_3.setText("")
         self.input_3.setAlignment(QtCore.Qt.AlignCenter)
         self.input_3.setObjectName("input_3")
-        self.input_4 = QtWidgets.QLineEdit(self.centralwidget)
-        self.input_4.setGeometry(QtCore.QRect(65, 660, 380, 60))
+        self.verticalLayout.addWidget(self.input_3)
+        self.input_4 = QtWidgets.QLineEdit(self.widget)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(20)
@@ -91,13 +115,18 @@ class Ui_MainWindow(object):
         self.input_4.setFont(font)
         self.input_4.setStyleSheet("background-color: #22222e;\n"
 "border: 2px solid #f66867;\n"
-"border-radius: 30;\n"
+"border-radius: 20;\n"
 "color: white")
         self.input_4.setText("")
         self.input_4.setAlignment(QtCore.Qt.AlignCenter)
         self.input_4.setObjectName("input_4")
-        self.Create_btn = QtWidgets.QPushButton(self.centralwidget)
-        self.Create_btn.setGeometry(QtCore.QRect(10, 730, 131, 41))
+        self.verticalLayout.addWidget(self.input_4)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.Create_btn = QtWidgets.QPushButton(self.widget)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -107,7 +136,7 @@ class Ui_MainWindow(object):
         self.Create_btn.setStyleSheet("QPushButton {\n"
 "color: white;\n"
 "border: 2px solid #555;\n"
-"border-radius: 20px;\n"
+"border-radius: 15px;\n"
 "border-style: outset;\n"
 "background-color: #fb5b5d;\n"
 "padding: 5px;\n"
@@ -123,8 +152,8 @@ class Ui_MainWindow(object):
 "}")
         self.Create_btn.setFlat(False)
         self.Create_btn.setObjectName("Create_btn")
-        self.Clear_btn = QtWidgets.QPushButton(self.centralwidget)
-        self.Clear_btn.setGeometry(QtCore.QRect(190, 730, 131, 41))
+        self.horizontalLayout.addWidget(self.Create_btn)
+        self.Clear_btn = QtWidgets.QPushButton(self.widget)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -134,7 +163,7 @@ class Ui_MainWindow(object):
         self.Clear_btn.setStyleSheet("QPushButton {\n"
 "color: white;\n"
 "border: 2px solid #555;\n"
-"border-radius: 20px;\n"
+"border-radius: 15px;\n"
 "border-style: outset;\n"
 "background-color: #fb5b5d;\n"
 "padding: 5px;\n"
@@ -149,8 +178,8 @@ class Ui_MainWindow(object):
 "background: #fa4244\n"
 "}")
         self.Clear_btn.setObjectName("Clear_btn")
-        self.Random_btn = QtWidgets.QPushButton(self.centralwidget)
-        self.Random_btn.setGeometry(QtCore.QRect(370, 730, 131, 41))
+        self.horizontalLayout.addWidget(self.Clear_btn)
+        self.Random_btn = QtWidgets.QPushButton(self.widget)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -160,7 +189,7 @@ class Ui_MainWindow(object):
         self.Random_btn.setStyleSheet("QPushButton {\n"
 "color: white;\n"
 "border: 2px solid #555;\n"
-"border-radius: 20px;\n"
+"border-radius: 15px;\n"
 "border-style: outset;\n"
 "background-color: #fb5b5d;\n"
 "padding: 5px;\n"
@@ -175,6 +204,8 @@ class Ui_MainWindow(object):
 "background: #fa4244\n"
 "}")
         self.Random_btn.setObjectName("Random_btn")
+        self.horizontalLayout.addWidget(self.Random_btn)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -184,6 +215,11 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "ОБХОД ГРАФА"))
+        self.OutputText.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.Create_btn.setText(_translate("MainWindow", "Create"))
         self.Clear_btn.setText(_translate("MainWindow", "Clear"))
         self.Random_btn.setText(_translate("MainWindow", "Random"))
