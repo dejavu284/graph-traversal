@@ -15,20 +15,25 @@ class Lab5(QtWidgets.QMainWindow):
 
     
     def init_ui(self):
+        self.countValue = 6
+        self.startValue = 'g'
+        self.stopValue = 'g'
+        self.rang = 1
+
         self.setWindowTitle('Обход Графа')
         self.setWindowIcon(QIcon('Discord.ico'))
 
-        self.ui.input_1.setPlaceholderText('Количество вершин:')
-        self.ui.input_1.setToolTip('Введите желаемое количество вершин')
+        self.ui.countLine.setPlaceholderText('Колво:')
+        self.ui.countLine.setToolTip('Введите желаемое количество вершин')
 
-        self.ui.input_2.setPlaceholderText('Тип графа:')
-        self.ui.input_2.setToolTip('Взвешенный/невзвешанный')
+        self.ui.startLine.setPlaceholderText('От:')
+        self.ui.startLine.setToolTip('От какой вершины совершить обход')
 
-        self.ui.input_3.setPlaceholderText('Способ обхода:')
-        self.ui.input_3.setToolTip('В глубину/ширину/Дейкстры/...')
+        self.ui.stopLine.setPlaceholderText('До:')
+        self.ui.stopLine.setToolTip('До какой вершины совершить обход')
 
-        self.ui.input_4.setPlaceholderText('Ранг графа:')
-        self.ui.input_4.setToolTip('1/2/...')
+        self.ui.rangLine.setPlaceholderText('Ранг:')
+        self.ui.rangLine.setToolTip('1/2/...')
 
         self.ui.Clear_btn.clicked.connect(self.clean_out)
         self.ui.Clear_btn.setToolTip('Очистить поля')
@@ -36,6 +41,18 @@ class Lab5(QtWidgets.QMainWindow):
         self.ui.Create_btn.clicked.connect(self.create_matrix)
 
         self.ui.Random_btn.clicked.connect(self.setRandom)
+
+        self.ui.weightRB.toggled.connect(self.clickedRB_first)
+        self.ui.notweightRB.toggled.connect(self.clickedRB_first)
+
+        self.ui.stackRB.toggled.connect(self.clickedRB_second)
+        self.ui.queueRB.toggled.connect(self.clickedRB_second)
+        self.ui.daRB.toggled.connect(self.clickedRB_second)
+        self.ui.aaRB.toggled.connect(self.clickedRB_second)
+
+
+    def clickedRB_first(self): self.flag_1 = True
+    def clickedRB_second(self): self.flag_2 = True
 
 
     def prepare_one_rew_data(self, table):
@@ -55,16 +72,19 @@ class Lab5(QtWidgets.QMainWindow):
     
     def setRandom(self):
         if self.is_text():
-            self.n_top = int(self.ui.input_1.text())
-            self.type_graph = self.ui.input_2.text()
-            self.method = self.ui.input_3.text()
-            self.rang = self.ui.input_4.text()
-            self.ui.tableWidget.setRowCount(self.n_top)
-            self.ui.tableWidget.setColumnCount(self.n_top)
-            if self.type_graph == 'невзвешенный':
-                self.counter = self.getRandomCell(self.n_top, False)
-            else:
-                self.counter = self.getRandomCell(self.n_top, True)
+            self.countValue = int(self.ui.countLine.text())
+            self.startValue = self.ui.startLine.text()
+            self.stopValue = self.ui.stopLine.text()
+            self.rang = self.ui.rangLine.text()
+            self.ui.tableWidget.setRowCount(self.countValue)
+            self.ui.tableWidget.setColumnCount(self.countValue)
+
+            if self.flag_1:
+                if self.ui.notweightRB.isChecked():
+                    self.counter = self.getRandomCell(self.countValue, False)
+                else:
+                    self.counter = self.getRandomCell(self.countValue, True)
+
             self.ui.wayCount.setText(str(self.counter))
             self.ui.tableWidget.resizeColumnsToContents()
             self.changeText(False, True)
@@ -99,34 +119,34 @@ class Lab5(QtWidgets.QMainWindow):
     def create_matrix(self):
         if self.is_text():
             self.setText(False)
-            self.ui.tableWidget.setRowCount(self.n_top)
-            self.ui.tableWidget.setColumnCount(self.n_top)
+            self.ui.tableWidget.setRowCount(self.countValue)
+            self.ui.tableWidget.setColumnCount(self.countValue)
             self.ui.tableWidget.resizeColumnsToContents()
             #for i in range(self.n_top):
             #   self.ui.tableWidget.setColumnWidth(i, 50)
 
 
     def is_text(self):
-        if self.ui.input_1.text() != '':
-            if self.ui.input_2.text() != '':
-                if self.ui.input_3.text() != '':
-                    if self.ui.input_4.text() != '': return True
+        if self.ui.countLine.text() != '':
+            if self.ui.startLine.text() != '':
+                if self.ui.stopLine.text() != '':
+                    if self.ui.rangLine.text() != '': return True
         else: return False
 
 
-    def setText(self, isClear):#, isClear,  n_top, type_graph, method, rang):
+    def setText(self, isClear):
         flag = False
         if isClear:
-            self.n_top = None
-            self.type_graph = None
-            self.method = None
+            self.countValue = None
+            self.startValue = None
+            self.stopValue = None
             self.rang = None
 
         elif self.is_text():
-            self.n_top = int(self.ui.input_1.text())
-            self.type_graph = self.ui.input_2.text()
-            self.method = self.ui.input_3.text()
-            self.rang = int(self.ui.input_4.text())
+            self.countValue = int(self.ui.countLine.text())
+            self.startValue = self.ui.startLine.text()
+            self.stopValue = self.ui.stopLine.text()
+            self.rang = int(self.ui.rangLine.text())
             flag = True
         
         return flag
@@ -137,18 +157,22 @@ class Lab5(QtWidgets.QMainWindow):
 
     def changeText(self, isClear, isRandom):
         if isClear:
-            self.ui.input_1.setText(None)
-            self.ui.input_2.setText(None)
-            self.ui.input_3.setText(None)
-            self.ui.input_4.setText(None)
+            self.ui.countLine.setText(None)
+            self.ui.startLine.setText(None)
+            self.ui.stopLine.setText(None)
+            self.ui.rangLine.setText(None)
         elif isRandom:
-            self.ui.input_1.setText(str(self.n_top))
-            self.ui.input_2.setText(self.type_graph)
-            self.ui.input_3.setText(self.method)
-            self.ui.input_4.setText(str(self.rang))
+            self.ui.countLine.setText(str(self.countValue))
+            self.ui.startLine.setText(self.startValue)
+            self.ui.stopLine.setText(self.stopValue)
+            self.ui.rangLine.setText(str(self.rang))
 
 
     def clean_out(self):
+
+        for i in range(self.countValue):
+            self.ui.tableWidget.removeRow(0)
+            self.ui.tableWidget.removeColumn(0)
         self.setText(True)
         self.changeText(True, False)
 

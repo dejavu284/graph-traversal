@@ -101,80 +101,153 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.wayCount.setFont(font)
         self.wayCount.setObjectName("wayCount")
-        self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget.setGeometry(QtCore.QRect(10, 520, 471, 261))
-        self.layoutWidget.setToolTip("")
-        self.layoutWidget.setObjectName("layoutWidget")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.layoutWidget)
+        self.countLine = QtWidgets.QLineEdit(self.centralwidget)
+        self.countLine.setGeometry(QtCore.QRect(10, 520, 71, 21))
+        font = QtGui.QFont()
+        font.setFamily("MS Shell Dlg 2")
+        font.setPointSize(8)
+        font.setBold(False)
+        font.setWeight(50)
+        self.countLine.setFont(font)
+        self.countLine.setToolTip("")
+        self.countLine.setStyleSheet("background-color: #22222e;\n"
+"border: 2px solid #f66867;\n"
+"border-radius: 10;\n"
+"color: white")
+        self.countLine.setText("")
+        self.countLine.setAlignment(QtCore.Qt.AlignCenter)
+        self.countLine.setObjectName("countLine")
+        self.startLine = QtWidgets.QLineEdit(self.centralwidget)
+        self.startLine.setGeometry(QtCore.QRect(10, 550, 71, 22))
+        self.startLine.setStyleSheet("background-color: #22222e;\n"
+"border: 2px solid #f66867;\n"
+"border-radius: 10;\n"
+"color: white")
+        self.startLine.setAlignment(QtCore.Qt.AlignCenter)
+        self.startLine.setObjectName("startLine")
+        self.stopLine = QtWidgets.QLineEdit(self.centralwidget)
+        self.stopLine.setGeometry(QtCore.QRect(10, 580, 71, 22))
+        self.stopLine.setStyleSheet("background-color: #22222e;\n"
+"border: 2px solid #f66867;\n"
+"border-radius: 10;\n"
+"color: white")
+        self.stopLine.setAlignment(QtCore.Qt.AlignCenter)
+        self.stopLine.setObjectName("stopLine")
+        self.rangLine = QtWidgets.QLineEdit(self.centralwidget)
+        self.rangLine.setGeometry(QtCore.QRect(10, 610, 71, 22))
+        self.rangLine.setStyleSheet("background-color: #22222e;\n"
+"border: 2px solid #f66867;\n"
+"border-radius: 10;\n"
+"color: white")
+        self.rangLine.setAlignment(QtCore.Qt.AlignCenter)
+        self.rangLine.setObjectName("rangLine")
+        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
+        self.groupBox.setGeometry(QtCore.QRect(90, 520, 211, 101))
+        self.groupBox.setStyleSheet("color:white")
+        self.groupBox.setObjectName("groupBox")
+        self.widget = QtWidgets.QWidget(self.groupBox)
+        self.widget.setGeometry(QtCore.QRect(10, 20, 191, 63))
+        self.widget.setObjectName("widget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.notweightRB = QtWidgets.QRadioButton(self.widget)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.notweightRB.setFont(font)
+        self.notweightRB.setStyleSheet("background-color:qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0.195219 rgba(255, 14, 23, 255), stop:1 rgba(0, 0, 0, 0));\n"
+"border: 1px solid rgba(255, 14, 23, 255);\n"
+"border-radius: 5px;\n"
+"border-style: outset;")
+        self.notweightRB.setObjectName("notweightRB")
+        self.verticalLayout.addWidget(self.notweightRB)
+        self.weightRB = QtWidgets.QRadioButton(self.widget)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.weightRB.setFont(font)
+        self.weightRB.setStyleSheet("background-color:qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0.195219 rgba(255, 14, 23, 255), stop:1 rgba(0, 0, 0, 0));\n"
+"border: 1px solid rgba(255, 14, 23, 255);\n"
+"border-radius: 5px;\n"
+"border-style: outset;")
+        self.weightRB.setCheckable(True)
+        self.weightRB.setChecked(False)
+        self.weightRB.setObjectName("weightRB")
+        self.verticalLayout.addWidget(self.weightRB)
+        self.groupBox_3 = QtWidgets.QGroupBox(self.centralwidget)
+        self.groupBox_3.setGeometry(QtCore.QRect(320, 520, 161, 161))
+        self.groupBox_3.setStyleSheet("color:white")
+        self.groupBox_3.setObjectName("groupBox_3")
+        self.widget1 = QtWidgets.QWidget(self.groupBox_3)
+        self.widget1.setGeometry(QtCore.QRect(10, 20, 141, 131))
+        self.widget1.setObjectName("widget1")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget1)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.input_1 = QtWidgets.QLineEdit(self.layoutWidget)
+        self.stackRB = QtWidgets.QRadioButton(self.widget1)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
-        font.setPointSize(20)
+        font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
-        self.input_1.setFont(font)
-        self.input_1.setToolTip("")
-        self.input_1.setStyleSheet("background-color: #22222e;\n"
-"border: 2px solid #f66867;\n"
-"border-radius: 20;\n"
-"color: white")
-        self.input_1.setText("")
-        self.input_1.setAlignment(QtCore.Qt.AlignCenter)
-        self.input_1.setObjectName("input_1")
-        self.verticalLayout.addWidget(self.input_1)
-        self.input_2 = QtWidgets.QLineEdit(self.layoutWidget)
+        self.stackRB.setFont(font)
+        self.stackRB.setStyleSheet("background-color:qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0.195219 rgba(255, 14, 23, 255), stop:1 rgba(0, 0, 0, 0));\n"
+"border: 1px solid rgba(255, 14, 23, 255);\n"
+"border-radius: 5px;\n"
+"border-style: outset;")
+        self.stackRB.setObjectName("stackRB")
+        self.verticalLayout_2.addWidget(self.stackRB)
+        self.queueRB = QtWidgets.QRadioButton(self.widget1)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
-        font.setPointSize(20)
+        font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
-        self.input_2.setFont(font)
-        self.input_2.setStyleSheet("background-color: #22222e;\n"
-"border: 2px solid #f66867;\n"
-"border-radius: 20;\n"
-"color: white")
-        self.input_2.setText("")
-        self.input_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.input_2.setObjectName("input_2")
-        self.verticalLayout.addWidget(self.input_2)
-        self.input_3 = QtWidgets.QLineEdit(self.layoutWidget)
+        self.queueRB.setFont(font)
+        self.queueRB.setStyleSheet("background-color:qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0.195219 rgba(255, 14, 23, 255), stop:1 rgba(0, 0, 0, 0));\n"
+"border: 1px solid rgba(255, 14, 23, 255);\n"
+"border-radius: 5px;\n"
+"border-style: outset;")
+        self.queueRB.setObjectName("queueRB")
+        self.verticalLayout_2.addWidget(self.queueRB)
+        self.daRB = QtWidgets.QRadioButton(self.widget1)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
-        font.setPointSize(20)
+        font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
-        self.input_3.setFont(font)
-        self.input_3.setStyleSheet("background-color: #22222e;\n"
-"border: 2px solid #f66867;\n"
-"border-radius: 20;\n"
-"color: white")
-        self.input_3.setText("")
-        self.input_3.setAlignment(QtCore.Qt.AlignCenter)
-        self.input_3.setObjectName("input_3")
-        self.verticalLayout.addWidget(self.input_3)
-        self.input_4 = QtWidgets.QLineEdit(self.layoutWidget)
+        self.daRB.setFont(font)
+        self.daRB.setStyleSheet("background-color:qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0.195219 rgba(255, 14, 23, 255), stop:1 rgba(0, 0, 0, 0));\n"
+"border: 1px solid rgba(255, 14, 23, 255);\n"
+"border-radius: 5px;\n"
+"border-style: outset;")
+        self.daRB.setObjectName("daRB")
+        self.verticalLayout_2.addWidget(self.daRB)
+        self.aaRB = QtWidgets.QRadioButton(self.widget1)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
-        font.setPointSize(20)
+        font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
-        self.input_4.setFont(font)
-        self.input_4.setStyleSheet("background-color: #22222e;\n"
-"border: 2px solid #f66867;\n"
-"border-radius: 20;\n"
-"color: white")
-        self.input_4.setText("")
-        self.input_4.setAlignment(QtCore.Qt.AlignCenter)
-        self.input_4.setObjectName("input_4")
-        self.verticalLayout.addWidget(self.input_4)
-        self.verticalLayout_2.addLayout(self.verticalLayout)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.aaRB.setFont(font)
+        self.aaRB.setStyleSheet("background-color:qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0.195219 rgba(255, 14, 23, 255), stop:1 rgba(0, 0, 0, 0));\n"
+"border: 1px solid rgba(255, 14, 23, 255);\n"
+"border-radius: 5px;\n"
+"border-style: outset;")
+        self.aaRB.setObjectName("aaRB")
+        self.verticalLayout_2.addWidget(self.aaRB)
+        self.widget2 = QtWidgets.QWidget(self.centralwidget)
+        self.widget2.setGeometry(QtCore.QRect(10, 730, 471, 41))
+        self.widget2.setObjectName("widget2")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget2)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.Create_btn = QtWidgets.QPushButton(self.layoutWidget)
+        self.Create_btn = QtWidgets.QPushButton(self.widget2)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -186,7 +259,7 @@ class Ui_MainWindow(object):
 "border: 2px solid #555;\n"
 "border-radius: 15px;\n"
 "border-style: outset;\n"
-"background-color: #fb5b5d;\n"
+"background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0.651741 rgba(255, 14, 23, 255), stop:1 rgba(0, 0, 0, 0));\n"
 "padding: 5px;\n"
 "}\n"
 "\n"
@@ -201,7 +274,7 @@ class Ui_MainWindow(object):
         self.Create_btn.setFlat(False)
         self.Create_btn.setObjectName("Create_btn")
         self.horizontalLayout.addWidget(self.Create_btn)
-        self.Clear_btn = QtWidgets.QPushButton(self.layoutWidget)
+        self.Clear_btn = QtWidgets.QPushButton(self.widget2)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -213,7 +286,7 @@ class Ui_MainWindow(object):
 "border: 2px solid #555;\n"
 "border-radius: 15px;\n"
 "border-style: outset;\n"
-"background-color: #fb5b5d;\n"
+"background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0.651741 rgba(255, 14, 23, 255), stop:1 rgba(0, 0, 0, 0));\n"
 "padding: 5px;\n"
 "}\n"
 "\n"
@@ -227,7 +300,7 @@ class Ui_MainWindow(object):
 "}")
         self.Clear_btn.setObjectName("Clear_btn")
         self.horizontalLayout.addWidget(self.Clear_btn)
-        self.Random_btn = QtWidgets.QPushButton(self.layoutWidget)
+        self.Random_btn = QtWidgets.QPushButton(self.widget2)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -239,7 +312,7 @@ class Ui_MainWindow(object):
 "border: 2px solid #555;\n"
 "border-radius: 15px;\n"
 "border-style: outset;\n"
-"background-color: #fb5b5d;\n"
+"background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:1, stop:0.651741 rgba(255, 14, 23, 255), stop:1 rgba(0, 0, 0, 0));\n"
 "padding: 5px;\n"
 "}\n"
 "\n"
@@ -253,7 +326,6 @@ class Ui_MainWindow(object):
 "}")
         self.Random_btn.setObjectName("Random_btn")
         self.horizontalLayout.addWidget(self.Random_btn)
-        self.verticalLayout_2.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -267,7 +339,15 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "Количество путей:"))
         self.graphTravel.setText(_translate("MainWindow", "----------------"))
         self.wayCount.setText(_translate("MainWindow", "-------------------------"))
-        self.Create_btn.setText(_translate("MainWindow", "Create"))
+        self.groupBox.setTitle(_translate("MainWindow", "Тип графа"))
+        self.notweightRB.setText(_translate("MainWindow", "Невзвешанный"))
+        self.weightRB.setText(_translate("MainWindow", "Взвешанный"))
+        self.groupBox_3.setTitle(_translate("MainWindow", "Тип графа"))
+        self.stackRB.setText(_translate("MainWindow", "В глубину"))
+        self.queueRB.setText(_translate("MainWindow", "В ширину"))
+        self.daRB.setText(_translate("MainWindow", "Дейкстры"))
+        self.aaRB.setText(_translate("MainWindow", "А star"))
+        self.Create_btn.setText(_translate("MainWindow", "GO"))
         self.Clear_btn.setText(_translate("MainWindow", "Clear"))
         self.Random_btn.setText(_translate("MainWindow", "Random"))
 
