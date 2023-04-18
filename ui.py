@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(547, 788)
+        MainWindow.resize(547, 820)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
         MainWindow.setStyleSheet("background-color:#22222e")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -55,7 +55,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.label)
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.tableWidget = QtWidgets.QTableWidget(self.frame)
+        self.tabWidget = QtWidgets.QTabWidget(self.frame)
+        self.tabWidget.setObjectName("tabWidget")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.tableWidget = QtWidgets.QTableWidget(self.tab)
+        self.tableWidget.setGeometry(QtCore.QRect(0, 1, 491, 431))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.tableWidget.sizePolicy().hasHeightForWidth())
+        self.tableWidget.setSizePolicy(sizePolicy)
         self.tableWidget.setAutoFillBackground(False)
         self.tableWidget.setStyleSheet("QTableWidget::item{\n"
 "background-color: white;\n"
@@ -78,7 +88,48 @@ class Ui_MainWindow(object):
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
-        self.verticalLayout_8.addWidget(self.tableWidget)
+        self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setObjectName("tab_2")
+        self.tableWidget_2 = QtWidgets.QTableWidget(self.tab_2)
+        self.tableWidget_2.setGeometry(QtCore.QRect(0, 0, 791, 701))
+        self.tableWidget_2.setAutoFillBackground(False)
+        self.tableWidget_2.setStyleSheet("QTableWidget::item{\n"
+"background-color: white;\n"
+"border-style: outset;\n"
+"border-width: 2px;\n"
+"border-radius: 3px;\n"
+"border-color:green;\n"
+"}\n"
+"\n"
+"\n"
+"QTableWidget::item:selected{\n"
+"background-color: red;\n"
+"border-width: 2px;\n"
+"border-radius: 3px;\n"
+"border-color:blue;\n"
+"color: green;\n"
+"}\n"
+"")
+        self.tableWidget_2.setShowGrid(True)
+        self.tableWidget_2.setObjectName("tableWidget_2")
+        self.tableWidget_2.setColumnCount(0)
+        self.tableWidget_2.setRowCount(0)
+        self.tabWidget.addTab(self.tab_2, "")
+        self.tab_3 = QtWidgets.QWidget()
+        self.tab_3.setObjectName("tab_3")
+        self.graphTravel_2 = QtWidgets.QLabel(self.tab_3)
+        self.graphTravel_2.setGeometry(QtCore.QRect(80, 80, 211, 161))
+        self.graphTravel_2.setMaximumSize(QtCore.QSize(1920, 1080))
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.graphTravel_2.setFont(font)
+        self.graphTravel_2.setObjectName("graphTravel_2")
+        self.tabWidget.addTab(self.tab_3, "")
+        self.verticalLayout_8.addWidget(self.tabWidget)
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
@@ -98,6 +149,7 @@ class Ui_MainWindow(object):
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_4.addWidget(self.label_2)
         self.graphTravel = QtWidgets.QLabel(self.frame)
+        self.graphTravel.setMaximumSize(QtCore.QSize(1920, 1080))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(10)
@@ -124,6 +176,7 @@ class Ui_MainWindow(object):
         self.label_3.setObjectName("label_3")
         self.horizontalLayout_5.addWidget(self.label_3)
         self.wayCount = QtWidgets.QLabel(self.frame)
+        self.wayCount.setMaximumSize(QtCore.QSize(1920, 1080))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(10)
@@ -219,6 +272,11 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.notweightRB = QtWidgets.QRadioButton(self.groupBox)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.notweightRB.sizePolicy().hasHeightForWidth())
+        self.notweightRB.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -232,6 +290,11 @@ class Ui_MainWindow(object):
         self.notweightRB.setObjectName("notweightRB")
         self.verticalLayout.addWidget(self.notweightRB)
         self.weightRB = QtWidgets.QRadioButton(self.groupBox)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.weightRB.sizePolicy().hasHeightForWidth())
+        self.weightRB.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -258,6 +321,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.stackRB = QtWidgets.QRadioButton(self.groupBox_3)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.stackRB.sizePolicy().hasHeightForWidth())
+        self.stackRB.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -271,6 +339,11 @@ class Ui_MainWindow(object):
         self.stackRB.setObjectName("stackRB")
         self.verticalLayout_2.addWidget(self.stackRB)
         self.queueRB = QtWidgets.QRadioButton(self.groupBox_3)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.queueRB.sizePolicy().hasHeightForWidth())
+        self.queueRB.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -284,6 +357,11 @@ class Ui_MainWindow(object):
         self.queueRB.setObjectName("queueRB")
         self.verticalLayout_2.addWidget(self.queueRB)
         self.daRB = QtWidgets.QRadioButton(self.groupBox_3)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.daRB.sizePolicy().hasHeightForWidth())
+        self.daRB.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -297,6 +375,11 @@ class Ui_MainWindow(object):
         self.daRB.setObjectName("daRB")
         self.verticalLayout_2.addWidget(self.daRB)
         self.aaRB = QtWidgets.QRadioButton(self.groupBox_3)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.aaRB.sizePolicy().hasHeightForWidth())
+        self.aaRB.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -400,12 +483,17 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "ОБХОД ГРАФА"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
+        self.graphTravel_2.setText(_translate("MainWindow", "----------------"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Tab3"))
         self.label_2.setText(_translate("MainWindow", "Обход:"))
         self.graphTravel.setText(_translate("MainWindow", "----------------"))
         self.label_3.setText(_translate("MainWindow", "Количество путей:"))

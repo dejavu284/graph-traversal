@@ -70,19 +70,38 @@ class Lab5(QtWidgets.QMainWindow):
     def foo(self):
         self.graphTraversal(self.ui.tableWidget)
 
+
+    def setStr(self, Dict):
+        string = ''
+        for d in Dict:
+            string += f'{d}: {Dict[d]}'
+            string += '\n'
+        return string
+
+
     def graphTraversal(self, table):
-        arr = []
+        temp = []
+        Dict = dict()
         for i in range(0, table.rowCount()):
-            arr.append(f'{i+1}:')
             for j in range(0, table.columnCount()):
                 if table.item(i,j).text() == "1":
-                    arr.append(j+1)
-            arr.append('|')
-        print(arr)
+                    temp.append(f'{j+1}')
+            Dict[f'{i+1}'] = temp
+        self.ui.graphTravel.setText(self.setStr(Dict))
+        print(self.setStr(Dict))
+        print(f'Dict is: {Dict}')
+
+        queue = []
+        traversal = []
+
+        for i in temp:
+            self.queue(queue, i)
+
+
 
 
     def queue(self, arr, item):
-        arr.insert(0, item)
+        arr.append(item)
     
 
     def dequeue(self, arr):
@@ -192,6 +211,8 @@ class Lab5(QtWidgets.QMainWindow):
             for i in range(self.countValue):
                 self.ui.tableWidget.removeRow(0)
                 self.ui.tableWidget.removeColumn(0)
+            self.ui.graphTravel.setText('------------------------')
+            self.ui.wayCount.setText('------------------------')
             self.setText(True)
             self.changeText(True, False)
 
