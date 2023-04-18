@@ -19,11 +19,13 @@ class Lab5(QtWidgets.QMainWindow):
         self.startValue = 'g'
         self.stopValue = 'g'
         self.rang = 1
+        self.flag_1 = False
+        self.flag_1 = False
 
         self.setWindowTitle('Обход Графа')
         self.setWindowIcon(QIcon('Discord.ico'))
 
-        self.ui.countLine.setPlaceholderText('Колво:')
+        self.ui.countLine.setPlaceholderText('Кол-во:')
         self.ui.countLine.setToolTip('Введите желаемое количество вершин')
 
         self.ui.startLine.setPlaceholderText('От:')
@@ -38,7 +40,7 @@ class Lab5(QtWidgets.QMainWindow):
         self.ui.Clear_btn.clicked.connect(self.clean_out)
         self.ui.Clear_btn.setToolTip('Очистить поля')
 
-        self.ui.Create_btn.clicked.connect(self.create_matrix)
+        self.ui.go_btn.clicked.connect(self.foo)
 
         self.ui.Random_btn.clicked.connect(self.setRandom)
 
@@ -65,9 +67,28 @@ class Lab5(QtWidgets.QMainWindow):
         except:
             return column_container
     
+    def foo(self):
+        self.graphTraversal(self.ui.tableWidget)
 
-   # def setOutput(self):
-        
+    def graphTraversal(self, table):
+        arr = []
+        for i in range(0, table.rowCount()):
+            arr.append(f'{i+1}:')
+            for j in range(0, table.columnCount()):
+                if table.item(i,j).text() == "1":
+                    arr.append(j+1)
+            arr.append('|')
+        print(arr)
+
+
+    def queue(self, arr, item):
+        arr.insert(0, item)
+    
+
+    def dequeue(self, arr):
+        item = arr[0]
+        arr.delete(0)
+        return item
 
     
     def setRandom(self):
@@ -76,18 +97,18 @@ class Lab5(QtWidgets.QMainWindow):
             self.startValue = self.ui.startLine.text()
             self.stopValue = self.ui.stopLine.text()
             self.rang = self.ui.rangLine.text()
-            self.ui.tableWidget.setRowCount(self.countValue)
-            self.ui.tableWidget.setColumnCount(self.countValue)
 
             if self.flag_1:
+                self.ui.tableWidget.setRowCount(self.countValue)
+                self.ui.tableWidget.setColumnCount(self.countValue)
                 if self.ui.notweightRB.isChecked():
                     self.counter = self.getRandomCell(self.countValue, False)
                 else:
                     self.counter = self.getRandomCell(self.countValue, True)
 
-            self.ui.wayCount.setText(str(self.counter))
-            self.ui.tableWidget.resizeColumnsToContents()
-            self.changeText(False, True)
+                self.ui.wayCount.setText(str(self.counter))
+                self.ui.tableWidget.resizeColumnsToContents()
+                self.changeText(False, True)
 
 
     def getRandomCell(self, n_top, weight):
@@ -116,12 +137,10 @@ class Lab5(QtWidgets.QMainWindow):
         return counter
 
 
-    def create_matrix(self):
+    def go_travel(self):
         if self.is_text():
             self.setText(False)
-            self.ui.tableWidget.setRowCount(self.countValue)
-            self.ui.tableWidget.setColumnCount(self.countValue)
-            self.ui.tableWidget.resizeColumnsToContents()
+            
             #for i in range(self.n_top):
             #   self.ui.tableWidget.setColumnWidth(i, 50)
 
@@ -169,12 +188,12 @@ class Lab5(QtWidgets.QMainWindow):
 
 
     def clean_out(self):
-
-        for i in range(self.countValue):
-            self.ui.tableWidget.removeRow(0)
-            self.ui.tableWidget.removeColumn(0)
-        self.setText(True)
-        self.changeText(True, False)
+        if self.is_text():    
+            for i in range(self.countValue):
+                self.ui.tableWidget.removeRow(0)
+                self.ui.tableWidget.removeColumn(0)
+            self.setText(True)
+            self.changeText(True, False)
 
 
 # class graph:
