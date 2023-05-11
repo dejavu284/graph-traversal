@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(547, 820)
+        MainWindow.resize(633, 820)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
         MainWindow.setStyleSheet("background-color:#22222e")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -60,7 +60,7 @@ class Ui_MainWindow(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.tableWidget = QtWidgets.QTableWidget(self.tab)
-        self.tableWidget.setGeometry(QtCore.QRect(0, 1, 491, 431))
+        self.tableWidget.setGeometry(QtCore.QRect(0, 1, 1920, 781))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -89,37 +89,10 @@ class Ui_MainWindow(object):
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
         self.tabWidget.addTab(self.tab, "")
-        self.tab_2 = QtWidgets.QWidget()
-        self.tab_2.setObjectName("tab_2")
-        self.tableWidget_2 = QtWidgets.QTableWidget(self.tab_2)
-        self.tableWidget_2.setGeometry(QtCore.QRect(0, 0, 791, 701))
-        self.tableWidget_2.setAutoFillBackground(False)
-        self.tableWidget_2.setStyleSheet("QTableWidget::item{\n"
-"background-color: white;\n"
-"border-style: outset;\n"
-"border-width: 2px;\n"
-"border-radius: 3px;\n"
-"border-color:green;\n"
-"}\n"
-"\n"
-"\n"
-"QTableWidget::item:selected{\n"
-"background-color: red;\n"
-"border-width: 2px;\n"
-"border-radius: 3px;\n"
-"border-color:blue;\n"
-"color: green;\n"
-"}\n"
-"")
-        self.tableWidget_2.setShowGrid(True)
-        self.tableWidget_2.setObjectName("tableWidget_2")
-        self.tableWidget_2.setColumnCount(0)
-        self.tableWidget_2.setRowCount(0)
-        self.tabWidget.addTab(self.tab_2, "")
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
         self.graphTravel_2 = QtWidgets.QLabel(self.tab_3)
-        self.graphTravel_2.setGeometry(QtCore.QRect(80, 80, 211, 161))
+        self.graphTravel_2.setGeometry(QtCore.QRect(10, 10, 1261, 781))
         self.graphTravel_2.setMaximumSize(QtCore.QSize(1920, 1080))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
@@ -127,6 +100,8 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.graphTravel_2.setFont(font)
+        self.graphTravel_2.setText("")
+        self.graphTravel_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.graphTravel_2.setObjectName("graphTravel_2")
         self.tabWidget.addTab(self.tab_3, "")
         self.verticalLayout_8.addWidget(self.tabWidget)
@@ -491,8 +466,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "ОБХОД ГРАФА"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
-        self.graphTravel_2.setText(_translate("MainWindow", "----------------"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Tab3"))
         self.label_2.setText(_translate("MainWindow", "Обход:"))
         self.graphTravel.setText(_translate("MainWindow", "----------------"))

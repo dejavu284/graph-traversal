@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>547</width>
+    <width>633</width>
     <height>820</height>
    </rect>
   </property>
@@ -94,8 +94,8 @@
                   <rect>
                    <x>0</x>
                    <y>1</y>
-                   <width>491</width>
-                   <height>431</height>
+                   <width>1920</width>
+                   <height>781</height>
                   </rect>
                  </property>
                  <property name="sizePolicy">
@@ -131,46 +131,6 @@ color: green;
                  </property>
                 </widget>
                </widget>
-               <widget class="QWidget" name="tab_2">
-                <attribute name="title">
-                 <string>Tab 2</string>
-                </attribute>
-                <widget class="QTableWidget" name="tableWidget_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>791</width>
-                   <height>701</height>
-                  </rect>
-                 </property>
-                 <property name="autoFillBackground">
-                  <bool>false</bool>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QTableWidget::item{
-background-color: white;
-border-style: outset;
-border-width: 2px;
-border-radius: 3px;
-border-color:green;
-}
-
-
-QTableWidget::item:selected{
-background-color: red;
-border-width: 2px;
-border-radius: 3px;
-border-color:blue;
-color: green;
-}
-</string>
-                 </property>
-                 <property name="showGrid">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </widget>
                <widget class="QWidget" name="tab_3">
                 <attribute name="title">
                  <string>Tab3</string>
@@ -178,10 +138,10 @@ color: green;
                 <widget class="QLabel" name="graphTravel_2">
                  <property name="geometry">
                   <rect>
-                   <x>80</x>
-                   <y>80</y>
-                   <width>211</width>
-                   <height>161</height>
+                   <x>10</x>
+                   <y>10</y>
+                   <width>1261</width>
+                   <height>781</height>
                   </rect>
                  </property>
                  <property name="maximumSize">
@@ -199,7 +159,10 @@ color: green;
                   </font>
                  </property>
                  <property name="text">
-                  <string>----------------</string>
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                  </property>
                 </widget>
                </widget>
