@@ -37,9 +37,6 @@ class Lab5(QtWidgets.QMainWindow):
         self.ui.stopLine.setPlaceholderText('До:')
         self.ui.stopLine.setToolTip('До какой вершины совершить обход')
 
-        self.ui.rangLine.setPlaceholderText('Ранг:')
-        self.ui.rangLine.setToolTip('1/2/...')
-
         self.ui.Clear_btn.clicked.connect(self.clean_out)
         self.ui.Clear_btn.setToolTip('Очистить поля')
 
@@ -56,7 +53,52 @@ class Lab5(QtWidgets.QMainWindow):
         self.ui.aaRB.toggled.connect(self.clickedRB_second)
 
 
-    def dijkstra(graph: Dict[str, Dict[str, int]], start_node: str) -> List[int]:
+    def goTravel(self):
+        if self.ui.weightRB.isChecked(): self.getGraph()
+        else: self.graphTraversal(self.ui.tableWidget)
+
+    
+    def getGraph(self):
+        start = self.ui.startLine.text()
+        stop = self.ui.stopLine.text()
+        table = self.ui.tableWidget
+        graph = {}
+        temp = {}
+        for i in range(0, table.rowCount()):
+            for j in range(0, table.columnCount()):
+                if table.item(i,j).text() != "0":
+                    temp[f'{j+1}'] = table.item(i,j).text()
+            graph[f'{i+1}'] = copy.deepcopy(temp)
+            temp = {}
+
+        str_user_heuristic = self.ui.lineHeuristic.text()
+        if str_user_heuristic == '':
+            user_heuristic = []
+        else: user_heuristic = str_user_heuristic.split(' ')
+        heuristic = dict()
+
+        for i in range(len(user_heuristic)):
+            heuristic[f'{i+1}'] = int(user_heuristic[i])
+
+        self.ui.graphTravel_2.setText(self.setStr(graph, True))
+        distances, predecessors = self.dijkstra_Astar(graph, start, heuristic)
+        bestWay = list()
+        self.recur(stop, bestWay, predecessors)
+        bestWay.reverse()
+        bestWay.append(f'{stop}')
+        output_str = f'Предки:\n{predecessors}\nДистанции:\n{distances}\nДлина маршрута из {start} в {stop}: {distances[stop]}\nПуть:\n{bestWay}\n'
+        self.ui.minWay.setText(output_str)
+
+
+    def recur(self, item, arr, p):
+        temp = p[item]
+        if temp is not None:
+            self.stack(arr, p[item])
+            self.recur(p[item], arr, p)
+        else: return 1
+
+
+    def dijkstra_Astar(self, graph: Dict[str, Dict[str, int]], start_node: str, heuristic:dict={}) -> List[int]:
         """
         Реализация алгоритма Дейкстры для нахождения кратчайшего пути в ориентированном графе с неотрицательными весами
         ребер от заданной начальной вершины до всех остальных вершин графа.
@@ -69,7 +111,6 @@ class Lab5(QtWidgets.QMainWindow):
         :return: список длин кратчайших путей от начальной вершины до всех остальных вершин графа,
                 в котором на i-ой позиции находится длина кратчайшего пути от начальной вершины до i-ой вершины графа
         """
-
         # Инициализация списка длин кратчайших путей и списка предшествующих вершин
         distances = {node: float('inf') for node in graph}
         distances[start_node] = 0
@@ -87,22 +128,25 @@ class Lab5(QtWidgets.QMainWindow):
             if current_distance > distances[current_node]:
                 continue
             for neighbor, weight in graph[current_node].items():
-                distance = current_distance + weight
+                if len(heuristic) != 0:
+                    distance = current_distance + int(weight) + heuristic[neighbor] - heuristic[current_node]
+                else: distance = current_distance + int(weight)
                 if distance < distances[neighbor]:
                     distances[neighbor] = distance
                     predecessors[neighbor] = current_node
                     heapq.heappush(pq, (distance, neighbor))
+            stop = self.ui.stopLine.text()
+            flag1 = len(heuristic) != 0
+            flag2 = stop == current_node
+            if (flag1) & (flag2):
+                break
 
         # Возвращаем список длин кратчайших путей от начальной вершины до всех остальных вершин графа
-        return list(distances.values())
-
+        return distances, predecessors
+    
 
     def clickedRB_first(self): self.flag_1 = True
     def clickedRB_second(self): self.flag_2 = True
-
-
-    # def createTable(self):
-
 
 
     def prepare_one_rew_data(self, table):
@@ -114,16 +158,23 @@ class Lab5(QtWidgets.QMainWindow):
             return column_container
         except:
             return column_container
-    
-    def goTravel(self):
-        self.graphTraversal(self.ui.tableWidget)
 
 
-    def setStr(self, Dict):
+    def setStr(self, Dict, weight=False):
         string = ''
-        for d in Dict:
-            string += f'{d}: {Dict[d]}'
-            string += '\n'
+        if weight:
+            temp_list = list()
+            for d in Dict:
+                for a in Dict[d]:
+                    temp_list.append(a)
+                    
+                string += f'{d}: {temp_list}'
+                string += '\n'
+                temp_list = list()
+        else:
+            for d in Dict:
+                string += f'{d}: {Dict[d]}'
+                string += '\n'
         return string
     
 
@@ -207,7 +258,6 @@ class Lab5(QtWidgets.QMainWindow):
             self.countValue = int(self.ui.countLine.text())
             self.startValue = self.ui.startLine.text()
             self.stopValue = self.ui.stopLine.text()
-            self.rang = self.ui.rangLine.text()
 
             if self.flag_1:
                 self.ui.tableWidget.setRowCount(self.countValue)
@@ -230,7 +280,9 @@ class Lab5(QtWidgets.QMainWindow):
                     if i == j:
                         self.ui.tableWidget.setItem(i, j, QTableWidgetItem(str(0)))
                     else:
-                        value = random.randrange(0,20)
+                        value = random.randrange(0,2)
+                        if value == 1:
+                            value = random.randrange(0,20)
                         self.ui.tableWidget.setItem(i, j, QTableWidgetItem(str(value)))
                         self.ui.tableWidget.setItem(j, i, QTableWidgetItem(str(value)))
                         if value != 0:
@@ -287,7 +339,6 @@ class Lab5(QtWidgets.QMainWindow):
             self.ui.countLine.setText(str(self.countValue))
             self.ui.startLine.setText(self.startValue)
             self.ui.stopLine.setText(self.stopValue)
-            self.ui.rangLine.setText(str(self.rang))
 
 
     def clean_out(self):
@@ -299,10 +350,6 @@ class Lab5(QtWidgets.QMainWindow):
             self.ui.wayCount.setText('------------------------')
             self.setText(True)
             self.changeText(True, False)
-
-
-# class graph:
-    # def __init__(self):
 
 
 app = QtWidgets.QApplication([])
